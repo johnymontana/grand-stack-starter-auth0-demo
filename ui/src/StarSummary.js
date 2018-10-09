@@ -36,7 +36,7 @@ class StarSummary extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchString: "Beer"
+      searchString: "Bookstore"
     };
     this.searchInput = React.createRef();
   }
