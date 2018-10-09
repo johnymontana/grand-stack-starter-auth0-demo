@@ -1,7 +1,6 @@
-import { neo4jgraphql } from "neo4j-graphql-js";
 
 export const typeDefs = `
-type User {
+type User @isAuthenticated {
   id: ID!
   name: String
   friends: [User] @relation(name: "FRIENDS", direction: "BOTH")
@@ -10,7 +9,7 @@ type User {
   numReviews: Int @cypher(statement: "MATCH (this)-[:WROTE]->(r:Review) RETURN COUNT(r)")
 }
 
-type Business {
+type Business @hasRole(roles:[admin]) {
   id: ID!
   name: String
   address: String
@@ -33,13 +32,22 @@ type Category {
   businesses: [Business] @relation(name: "IN_CATEGORY", direction: "IN")
 }
 
+type StarCount {
+  star: Int
+  count: Int
+}
+
+enum Role {
+  reader
+  user
+  admin
+}
+
 type Query {
-    usersBySubstring(substring: String, first: Int = 10, offset: Int = 0): [User] @cypher(statement: "MATCH (u:User) WHERE u.name CONTAINS $substring RETURN u")
+    starsByCategory(category: String): [StarCount] @cypher(statement: 
+      """MATCH (c:Category)<-[:IN_CATEGORY]-(:Business)<-[:REVIEWS]-(r:Review)
+         WHERE toLower(c.name) CONTAINS toLower($category)
+         WITH toString(r.stars) AS stars, COUNT(*) AS num
+         RETURN {star: stars, count: num}""")
 }
 `;
-
-export const resolvers = {
-  Query: {
-    usersBySubstring: neo4jgraphql
-  }
-};
