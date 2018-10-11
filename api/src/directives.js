@@ -1,7 +1,6 @@
 import { AuthorizationError } from "./errors";
 import * as jwt from "jsonwebtoken";
 import { SchemaDirectiveVisitor } from "graphql-tools";
-import { defaultFieldResolver } from "graphql/execution/execute";
 import { DirectiveLocation, GraphQLDirective, GraphQLList } from "graphql";
 
 export class HasRoleDirective extends SchemaDirectiveVisitor {
