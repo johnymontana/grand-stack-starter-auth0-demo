@@ -1,5 +1,5 @@
 
-export const typeDefs = `
+export const typeDefs = /* GraphQL */`
 type User @isAuthenticated {
   id: ID!
   name: String
@@ -9,7 +9,7 @@ type User @isAuthenticated {
   numReviews: Int @cypher(statement: "MATCH (this)-[:WROTE]->(r:Review) RETURN COUNT(r)")
 }
 
-type Business @hasRole(roles:[admin]) {
+type Business @hasRole(roles:[admin]){
   id: ID!
   name: String
   address: String
@@ -44,7 +44,7 @@ enum Role {
 }
 
 type Query {
-    starsByCategory(category: String): [StarCount] @cypher(statement: 
+    starsByCategory(category: String): [StarCount] @hasRole(roles: [reader]) @cypher(statement: 
       """MATCH (c:Category)<-[:IN_CATEGORY]-(:Business)<-[:REVIEWS]-(r:Review)
          WHERE toLower(c.name) CONTAINS toLower($category)
          WITH toString(r.stars) AS stars, COUNT(*) AS num

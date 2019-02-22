@@ -17,15 +17,16 @@
     "apollo-client": "^2.3.2",
     "apollo-errors": "^1.9.0",
     "apollo-link-http": "^1.5.4",
-    "apollo-server": "^2.0.4",
+    "apollo-server": "^2.4.5",
     "dotenv": "^5.0.1",
     "graphql": "0.13.2",
+    "graphql-auth-directives": "^2.0.0",
     "graphql-tag": "^2.9.2",
     "graphql-tools": "4.0.0",
     "husky": "^0.14.3",
     "jsonwebtoken": "^8.3.0",
     "neo4j-driver": "^1.6.1",
-    "neo4j-graphql-js": "^1.0.1",
+    "neo4j-graphql-js": "^2.4.0",
     "node-fetch": "^2.1.2"
   },
   "devDependencies": {

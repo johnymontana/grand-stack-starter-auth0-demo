@@ -3,15 +3,17 @@ import { ApolloServer } from "apollo-server";
 import { v1 as neo4j } from "neo4j-driver";
 import { makeAugmentedSchema } from "neo4j-graphql-js";
 import dotenv from "dotenv";
-import { IsAuthenticatedDirective, HasRoleDirective } from "./directives";
 
 dotenv.config();
 
 const augmentedSchema = makeAugmentedSchema({
   typeDefs,
-  schemaDirectives: {
-    isAuthenticated: IsAuthenticatedDirective,
-    hasRole: HasRoleDirective
+  config: {
+    auth: {
+      hasRole: true,
+      isAuthenticated: true,
+      hasScope: true
+    }
   }
 });
 
