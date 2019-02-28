@@ -44,7 +44,7 @@ enum Role {
 }
 
 type Query {
-    starsByCategory(category: String): [StarCount] @hasRole(roles: [reader]) @cypher(statement: 
+    starsByCategory(category: String): [StarCount] @cypher(statement: 
       """MATCH (c:Category)<-[:IN_CATEGORY]-(:Business)<-[:REVIEWS]-(r:Review)
          WHERE toLower(c.name) CONTAINS toLower($category)
          WITH toString(r.stars) AS stars, COUNT(*) AS num

@@ -12,7 +12,7 @@ const augmentedSchema = makeAugmentedSchema({
     auth: {
       hasRole: true,
       isAuthenticated: true,
-      hasScope: true
+      hasScope: false
     }
   }
 });

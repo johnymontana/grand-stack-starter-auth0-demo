@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/nodemon --exec babel-node src/index.js",
+    "debug": "nodemon src/index.js --exec babel-node --inspect-brk=9229 --nolazy",
     "seedDb": "./node_modules/.bin/babel-node src/seed/seed-db.js",
     "precommit": "lint-staged"
   },
@@ -20,13 +21,13 @@
     "apollo-server": "^2.4.5",
     "dotenv": "^5.0.1",
     "graphql": "0.13.2",
-    "graphql-auth-directives": "^2.0.0",
+    "graphql-auth-directives": "^2.1.0",
     "graphql-tag": "^2.9.2",
     "graphql-tools": "4.0.0",
     "husky": "^0.14.3",
     "jsonwebtoken": "^8.3.0",
-    "neo4j-driver": "^1.6.1",
-    "neo4j-graphql-js": "^2.4.0",
+    "neo4j-driver": "^1.7.2",
+    "neo4j-graphql-js": "^2.4.1",
     "node-fetch": "^2.1.2"
   },
   "devDependencies": {
